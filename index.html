@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WE NORTH — NORTH ADVENTURE</title>
+  <meta name="description" content="WE NORTH — North Adventure. Discover new places, challenge yourself, and experience the beauty of nature.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --purple:#4E4089;
+  --yellow:#EAE18B;
+  --orange:#FFA500;
+  --cream:#F7F4EA;
+  --black:#202020;
+  --white:#fff;
+  --muted:#6C6970;
+  --purple-dark:#392D70;
+  --light:var(--cream);
+  --dark:var(--black);
+  --text:var(--black);
+  --border:#C9C5B9;
+  --shadow:0 14px 35px rgba(32,32,32,.10);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);
+  color:var(--purple);
+  font-family:"Source Sans 3",Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:"Source Sans 3",Arial,sans-serif}
+
+.wrap{
+  width:min(980px,88%);
+  margin:auto;
+}
+
+
+/* MULTI-VIEW NAVIGATION */
+.page-view{display:none;min-height:100vh;padding-top:64px}
+.page-view.active{display:block}
+.main-view.hidden{display:none}
+.page-view .pay-section{min-height:calc(100vh - 64px)}
+.page-backbar{width:min(980px,88%);margin:0 auto;padding:18px 0 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.page-backbar .back-btn{display:inline-flex;align-items:center;gap:7px;border:0;background:var(--purple);color:#fff;border-radius:999px;padding:9px 15px;font-size:11px;font-weight:700;cursor:pointer}
+.page-backbar .back-btn:hover{background:var(--orange)}
+.page-title-mini{font-family:"Rubik One",sans-serif;font-size:18px;color:var(--purple);letter-spacing:-.4px}
+@media(max-width:700px){.page-view{padding-top:60px}.page-backbar{padding-top:14px}.page-title-mini{font-size:15px}}
+
+/* HEADER — same proportions as reference */
+header{
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  z-index:9999;
+  background:var(--yellow);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  transition:box-shadow .25s ease, background .25s ease;
+}
+.nav{
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  width:130px;
+  height:60px;
+  flex-shrink:0;
+}
+.logo img{
+  display:block;
+  width:128px;
+  height:60px;
+  object-fit:contain;
+  object-position:left center;
+}
+.navlinks{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+.navlinks a{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:8px;
+  transition:.2s;
+  position:relative;
+  padding:8px 2px;
+}
+.navlinks a:hover{color:var(--orange)}
+.menu{
+  display:none;
+  width:36px;height:36px;
+  border:0;border-radius:9px;
+  background:var(--yellow);
+  color:#fff;
+}
+
+/* HOME HERO — preserved from reference */
+.hero{
+  min-height:330px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.hero-copy{
+  width:570px;
+  padding-top:40px;
+}
+.pill{
+  display:inline-block;
+  background:var(--yellow);
+  border-radius:20px;
+  padding:5px 10px;
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:6px;
+  letter-spacing:1px;
+  margin-bottom:11px;
+;color:#fff}
+.hero h1{
+  font-family:"Rubik One",sans-serif;
+  font-size:clamp(38px,6vw,61px);
+  line-height:.91;
+  letter-spacing:-2.4px;
+}
+.hero h1 .orange{color:var(--orange)}
+.hero h1 .hero-line{
+  display:block;
+  width:100%;
+  text-align:left;
+  white-space:nowrap;
+}
+.hero-text{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.65;
+  max-width:400px;
+  margin-top:14px;
+}
+.hero-actions{
+  display:flex;
+  gap:7px;
+  margin-top:13px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:18px;
+  padding:9px 14px;
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:7px;
+  transition:.25s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-yellow{background:var(--yellow);color:#fff}
+
+.hero-art{
+  position:absolute;
+  width:390px;
+  height:390px;
+  right:-130px;
+  top:-95px;
+  border-radius:50%;
+  background:repeating-conic-gradient(
+    from 0deg,
+    rgba(255,165,0,.88) 0deg 7deg,
+    transparent 7deg 22.5deg
+  );
+  -webkit-mask:radial-gradient(
+    circle,
+    transparent 0 31%,
+    #000 31.5% 50%,
+    transparent 50.5% 100%
+  );
+  mask:radial-gradient(
+    circle,
+    transparent 0 31%,
+    #000 31.5% 50%,
+    transparent 50.5% 100%
+  );
+  opacity:.9;
+  filter:drop-shadow(0 10px 12px rgba(255,165,0,.10));
+}
+.hero-art:before{
+  content:"";
+  position:absolute;
+  width:248px;
+  height:248px;
+  left:71px;
+  top:71px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#FFE58A 0 8%,transparent 9%),
+    linear-gradient(145deg,#FFD95E 0%,#FFB51B 48%,#F39A00 100%);
+  box-shadow:
+    0 0 0 10px rgba(255,255,255,.35),
+    0 0 34px rgba(255,165,0,.18);
+}
+.hero-art:after{
+  content:"";
+  position:absolute;
+  width:155px;
+  height:155px;
+  left:94px;
+  top:68px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 28% 24%,rgba(255,255,255,.30) 0 5%,transparent 6%),
+    radial-gradient(circle at 70% 72%,rgba(255,255,255,.08) 0 18%,transparent 19%),
+    linear-gradient(135deg,rgba(255,255,255,.16),transparent 55%);
+  filter:blur(1px);
+}
+.divider{height:0;background:transparent !important}
+
+/* PROFILE — visual language preserved, content merged from uploaded file */
+.profile{
+  padding:42px 0 55px;
+  background:var(--cream);
+}
+.profile-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:44px;
+  align-items:center;
+}
+.eyebrow{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:7.5px;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+.profile h2{
+  font-family:"Rubik One",sans-serif;
+  font-size:clamp(30px,4.7vw,48px);
+  line-height:.98;
+  letter-spacing:-1.8px;
+}
+.profile h2 span{font-family:"Playfair Display",Georgia,serif;
+  color:var(--orange);
+  font-style:italic;
+}
+.profile h3{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  color:var(--orange);
+  font-size:11px;
+  letter-spacing:.5px;
+  margin-top:8px;
+}
+.profile p{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:9px;
+  line-height:1.8;
+  color:var(--muted);
+  max-width:425px;
+  margin-top:13px;
+}
+.profile-info{
+  margin-top:17px;
+}
+.profile-info p{
+  margin-top:6px;
+}
+.profile-logo-box{
+  min-height:190px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid #C9C5B9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:18px;
+}
+.profile-logo-box img{
+  width:205px;
+  max-width:90%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+.profile-cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:25px;
+}
+.mini-card{
+  min-height:84px;
+  padding:14px;
+  border:1px solid rgba(201,197,185,.7);
+  border-radius:13px;
+  background:rgba(255, 220, 0, .22);
+  transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
+  cursor:pointer;
+}
+.mini-card:hover,
+.mini-card:active{
+  transform:translateY(-6px) rotate(-1deg);
+  background:rgba(255, 220, 0, .38);
+  box-shadow:0 10px 22px rgba(0,0,0,.10);
+}
+.mini-card:nth-child(2):hover,
+.mini-card:nth-child(2):active{transform:translateY(-6px) rotate(1deg)}
+.mini-card:nth-child(3):hover,
+.mini-card:nth-child(3):active{transform:translateY(-6px) rotate(-1deg)}
+.mini-card:nth-child(4):hover,
+.mini-card:nth-child(4):active{transform:translateY(-6px) rotate(1deg)}
+.mini-card h4{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:8px;
+  margin-bottom:8px;
+}
+.mini-card p{
+  font-size:6.5px;
+  line-height:1.55;
+  margin:0;
+}
+
+
+.profile-approach{
+  margin-top:28px;
+  padding:24px;
+  border-radius:17px;
+  background:var(--purple);
+  color:#fff;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:center;
+}
+.profile-approach .eyebrow{color:var(--yellow)}
+.profile-approach h3{
+  font-family:"Rubik One",sans-serif;
+  color:#fff;
+  font-size:clamp(22px,3.5vw,34px);
+  line-height:.95;
+  margin:0;
+}
+.profile-approach h3 span{font-family:"Playfair Display",Georgia,serif;
+  color:var(--orange);
+  font-style:italic;
+}
+.profile-approach p{
+  color:rgba(255,255,255,.75);
+  margin:0;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:24px 0 16px;
+}
+.footer-name{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:2px;
+}
+.footer-socials{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:8px;
+}
+.footer-socials a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:76px;
+  padding:5px 9px;
+  border:1px solid rgba(78,64,137,.28);
+  border-radius:999px;
+  color:var(--purple);
+  font-family:"Source Sans 3",Arial,sans-serif;
+  font-size:6px;
+  font-weight:700;
+  letter-spacing:.35px;
+  transition:all .2s ease;
+}
+.footer-socials a:hover{
+  background:var(--purple);
+  color:#fff;
+  transform:translateY(-1px);
+}
+.footer-sub{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  color:#85827E;
+  font-size:6px;
+  margin-top:5px;
+}
+.copyright{
+  font-family:"Source Sans 3",Arial,sans-serif;
+  color:#AAA7A0;
+  font-size:5.5px;
+  margin-top:4px;
+}
+
+/* MOBILE — same behavior as reference */
+@media(max-width:760px){
+  .navlinks{
+    display:none;
+    position:absolute;
+    top:57px;
+    left:6%;
+    right:6%;
+    padding:10px;
+    border-radius:11px;
+    background:var(--yellow);
+    flex-direction:column;
+    gap:2px;
+    box-shadow:0 10px 24px rgba(0,0,0,.10);
+  }
+  .navlinks.active{display:flex}
+  .navlinks a{
+    color:#fff;
+    padding:10px 9px;
+    font-size:11px;
+  }
+  .menu{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .logo{width:102px;height:52px}
+  .logo img{width:100px;height:52px}
+  .profile-grid{grid-template-columns:1fr}
+  .profile-approach{grid-template-columns:1fr}
+
+  /* Mobile hero: reduce the large empty area and keep the artwork behind the copy. */
+  .hero{
+    min-height:560px;
+    align-items:flex-start;
+    padding-top:64px;
+  }
+  .hero-copy{
+    width:100%;
+    padding-top:82px;
+    position:relative;
+    z-index:2;
+  }
+  .hero-art{
+    width:240px;
+    height:240px;
+    right:-125px;
+    top:210px;
+    opacity:.95;
+  }
+  .hero-text{
+    font-size:11px;
+    line-height:1.55;
+    max-width:92%;
+    margin-top:16px;
+  }
+  .hero-actions{
+    gap:10px;
+    margin-top:16px;
+  }
+  .btn{
+    min-height:40px;
+    padding:10px 17px;
+    font-size:10px;
+  }
+}
+@media(max-width:480px){
+  .wrap{width:88%}
+  .hero h1{
+    font-size:38px;
+    line-height:.95;
+    letter-spacing:-1.5px;
+  }
+  .hero-copy{padding-top:72px}
+  .pill{font-size:7px;padding:6px 11px;margin-bottom:13px}
+  .profile-cards{gap:6px}
+  .mini-card{min-height:95px;padding:12px}
+}
+
+/* ================= PAYMENT / ESTIMATE / FAQ / ORDER ================= */
+.payment-area{background:var(--cream);color:var(--black)}
+.payment-area section{position:relative}.payment-area .pay-section{
+      padding:48px 20px 54px;
+      background:var(--light);
+    }.payment-area .pay-section.white{background:#fff}.payment-area .pay-section-heading{
+      text-align:center;
+      width:min(850px,100%);
+      margin-left:auto;
+      margin-right:auto;
+      margin-bottom:28px;
+    }.payment-area .pay-section-heading h2{
+      font-family:"Source Sans 3",Arial,sans-serif;
+      color:var(--purple);
+      font-size:29px;
+      line-height:1.15;
+      margin-bottom:8px;
+    }.payment-area .pay-section-heading p{
+      color:var(--muted);
+      font-size:11px;
+    }.payment-area .pay-calculator{
+      width:min(850px,100%);
+      margin:auto;
+      background:#fff;
+      border:1px solid #e8e6ed;
+      border-radius:15px;
+      box-shadow:var(--shadow);
+      padding:26px;
+      display:grid;
+      grid-template-columns:1.25fr .85fr;
+      gap:24px;
+    }.payment-area .pay-calc-left h3{
+      color:var(--purple);
+      font-size:13px;
+      margin-bottom:12px;
+    }.payment-area .pay-service-list{
+      max-height:275px;
+      overflow:auto;
+      padding-right:4px;
+    }.payment-area .pay-service-row{
+      display:grid;
+      grid-template-columns:18px 1fr auto 28px 20px 28px;
+      gap:7px;
+      align-items:center;
+      min-height:40px;
+      border:1px solid #e8e6ec;
+      border-radius:8px;
+      padding:6px 8px;
+      margin-bottom:7px;
+      font-size:10px;
+      background:#fff;
+    }.payment-area .pay-service-row input{accent-color:var(--purple)}.payment-area .pay-service-price{font-weight:600;color:#4f4c59;white-space:nowrap}.payment-area .pay-qty-btn{
+      width:26px;height:26px;
+      border:0;border-radius:6px;
+      background:var(--purple);
+      color:#fff;
+      cursor:pointer;
+      font-weight:800;
+      transition:.2s;
+    }.payment-area .pay-qty-btn:hover{background:var(--purple-dark);transform:scale(1.05)}.payment-area .pay-qty{
+      text-align:center;
+      font-weight:700;
+      font-size:11px;
+    }.payment-area .pay-additional{margin-top:17px}.payment-area .pay-additional h3{margin-bottom:10px}.payment-area .pay-additional-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid #e8e6ec;
+      border-radius:8px;
+      padding:10px;
+      font-size:10px;
+    }.payment-area .pay-additional-row input{accent-color:var(--purple)}.payment-area .pay-additional-price{margin-left:auto}.payment-area .pay-summary{
+      min-height:330px;
+      border-radius:13px;
+      background:var(--purple);
+      color:#fff;
+      padding:25px 23px;
+      display:flex;
+      flex-direction:column;
+    }.payment-area .pay-summary h3{color:var(--yellow);font-size:13px;margin-bottom:13px}.payment-area .summary-intro{font-size:10px;line-height:1.55;color:rgba(255,255,255,.75);margin-bottom:14px}.payment-area .pay-summary-items{
+      flex:1;
+      overflow:auto;
+      max-height:185px;
+    }.payment-area .pay-summary-empty{font-size:11px;font-style:italic;color:#fff}.payment-area .pay-summary-item{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,.14);
+      font-size:10px;
+    }.payment-area .pay-summary-total-label{font-size:10px;margin-top:12px}.payment-area .pay-summary-total{color:var(--yellow);font-size:25px;font-weight:900;margin-top:3px}.payment-area .pay-faq-section{background:var(--light);padding-top:46px;padding-bottom:46px}.payment-area .pay-faq-list{width:min(520px,100%);margin:auto}.payment-area .pay-faq-item{
+      background:#fff;
+      border:1px solid #dfdde7;
+      border-radius:7px;
+      margin-bottom:8px;
+      overflow:hidden;
+    }.payment-area .pay-faq-question{
+      width:100%;
+      min-height:40px;
+      padding:0 13px;
+      border:0;
+      background:#fff;
+      color:var(--purple);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      cursor:pointer;
+      text-align:left;
+      font-size:9px;
+      font-weight:700;
+    }.payment-area .pay-faq-arrow{font-size:10px;transition:.25s}.payment-area .pay-faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }.payment-area .pay-faq-answer p{
+      padding:0 13px 12px;
+      font-size:9px;
+      color:var(--muted);
+      line-height:1.6;
+    }.payment-area .pay-faq-item.active .pay-faq-arrow{transform:rotate(180deg)}.payment-area .pay-faq-item.active .pay-faq-answer{max-height:100px}.payment-area .pay-booking{background:#fff;padding-top:48px;padding-bottom:54px}.payment-area .pay-booking-card{
+      width:min(430px,100%);
+      margin:auto;
+      background:#fff;
+      border:1px solid #e7e5eb;
+      border-top:4px solid var(--purple);
+      border-radius:13px;
+      box-shadow:var(--shadow);
+      padding:20px;
+    }.payment-area .pay-form-group{margin-bottom:13px}.payment-area .pay-form-group label{
+      display:block;
+      font-size:9px;
+      font-weight:700;
+      margin-bottom:6px;
+    }.payment-area .pay-form-control{
+      width:100%;
+      border:1px solid #dcd9e1;
+      border-radius:6px;
+      padding:10px 11px;
+      outline:none;
+      font-size:10px;
+      color:var(--text);
+      background:#fff;
+      transition:.2s;
+    }.payment-area .pay-form-control:focus{
+      border-color:var(--purple);
+      box-shadow:0 0 0 3px rgba(78,64,137,.09);
+    }.payment-area textarea.form-control{min-height:75px;resize:vertical}.payment-area .pay-error{
+      display:none;
+      color:#b42318;
+      background:#fff0ef;
+      border-radius:6px;
+      padding:8px;
+      margin-bottom:10px;
+      font-size:9px;
+    }.payment-area .pay-form-submit{width:100%;margin-top:1px}.payment-area .pay-selected-note{
+      margin:10px 0 13px;
+      padding:9px;
+      border-radius:7px;
+      background:var(--light);
+      color:var(--muted);
+      font-size:9px;
+      line-height:1.5;
+    }
+
+    \n.payment-area .pay-section-heading h2,.payment-area .pay-calc-left h3{font-family:"Rubik One",sans-serif}\n.payment-area .pay-section-heading p,.payment-area .pay-service-row,.payment-area .pay-faq-question,.payment-area .pay-form-control{font-family:"Source Sans 3",Arial,sans-serif}\n.payment-area .pay-btn,.payment-area .pay-qty-btn{font-family:"Rubik One",sans-serif}\n@media(max-width:700px){\n  .payment-area .pay-calculator{grid-template-columns:1fr;padding:17px;gap:17px}\n  .payment-area .pay-summary{min-height:280px}\n  .payment-area .pay-service-row{grid-template-columns:17px 1fr auto 27px 18px 27px}\n  .payment-area .pay-section{padding-left:14px;padding-right:14px}\n}\n@media(max-width:420px){\n  .payment-area .pay-section-heading h2{font-size:25px}\n  .payment-area .pay-service-row{gap:4px;padding:5px}\n  .payment-area .pay-service-price{font-size:8px}\n}\n
+/* ===== HEADING ALIGNMENT ===== */
+.payment-area .pay-section-heading{
+  text-align:center !important;
+  width:min(850px,100%);
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.payment-area .pay-section-heading h2,
+.payment-area .pay-section-heading p{
+  text-align:center !important;
+}
+
+
+/* ===== YELLOW ORDER CTA & NOTICE ===== */
+.payment-area .pay-btn-yellow{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  border:0;
+  border-radius:8px;
+  padding:11px 14px;
+  background:var(--yellow);
+  color:var(--black);
+  cursor:pointer;
+  font-family:"Rubik One",sans-serif;
+  font-size:10px;
+  transition:.2s;
+}
+.payment-area .pay-btn-yellow:hover{
+  background:#DCD273;
+  transform:translateY(-1px);
+}
+.payment-area .pay-selected-note{
+  background:var(--yellow);
+  color:var(--black);
+}
+
+/* ===== STICKY NAVIGATION ===== */
+body{
+  padding-top:64px;
+}
+.navlinks a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:1px;
+  height:2px;
+  border-radius:2px;
+  background:var(--yellow);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .2s ease;
+}
+.navlinks a:hover::after{
+  transform:scaleX(1);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <a class="logo" href="#home" data-main-home aria-label="North Adventure"><img src="data:image/png;base64,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" alt="WN — North Adventure"></a>
+
+    <div class="navlinks" id="navlinks">
+      <a href="#home" data-main-home>HOME</a>
+      <a href="#profile" data-main-profile>PROFILE</a>
+      <a href="#calculator" data-page-link="calculator">ESTIMATE</a>
+      <a href="#faq" data-page-link="faq">FAQ</a>
+      <a href="#booking" data-page-link="booking">ORDER</a>
+    </div>
+
+    <button class="menu" id="menu" aria-label="Buka menu">☰</button>
+  </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<div id="mainView" class="main-view">
+<section class="hero" id="home">
+<div class="wrap">
+    <div class="hero-copy">
+      <div class="pill">CREATIVE GRAPHIC DESIGN AGENCY</div>
+
+      <h1>
+        <span class="hero-line">Make it <span class="orange">creative.</span></span>
+        <span class="hero-line">Make it <span class="orange">memorable.</span></span>
+      </h1>
+
+      <p class="hero-text">
+        North Adventure adalah creative graphic design agency yang
+        membantu brand berkembang lewat identitas visual yang kuat,
+        menarik, profesional, dan tetap terasa personal.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-orange" href="#profile" data-main-profile>VIEW PROFILE</a>
+        <a class="btn btn-yellow" href="#profile" data-main-profile>ABOUT US</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= PROFILE ================= -->
+<section class="profile" id="profile">
+  <div class="wrap">
+
+    <div class="profile-grid">
+
+      <div>
+        <div class="eyebrow">PROFILE — A LITTLE ABOUT US</div>
+
+        <h2>
+          We make brands<br>
+          <span>feel alive.</span>
+        </h2>
+
+        <h3>NORTH ADVENTURE — DESIGN CREATE INSPIRE</h3>
+
+        <p>
+          <strong>NORTH ADVENTURE</strong> hadir sebagai creative studio
+          yang menyediakan berbagai kebutuhan desain dan produk kreatif
+          sesuai dengan keinginan kamu. Mulai dari design untuk keutuhan
+          personal, organisasi, acara, hingga berbagai produk custom yang 
+          dapat disesuaikan dengan konsep dan kebutuhan kamu.
+
+    
+      </div>
+
+      <div>
+<div class="profile-cards">
+          <div class="mini-card">
+            <h4>♢ PERSONAL</h4>
+            <p>Desain disesuaikan dengan karakter dan kebutuhan brand.</p>
+          </div>
+
+          <div class="mini-card">
+            <h4>✦ THOUGHTFUL</h4>
+            <p>Setiap elemen punya alasan dan tujuan.</p>
+          </div>
+
+          <div class="mini-card">
+            <h4>◉ PLAYFUL</h4>
+            <p>Berani mengeksplorasi visual yang fresh.</p>
+          </div>
+
+          <div class="mini-card">
+            <h4>⊙ CONSISTENT</h4>
+            <p>Visual rapi dan mudah dikenali.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="profile-approach">
+      <div>
+        <div class="eyebrow">OUR APPROACH</div>
+        <h3>From idea<br>to <span>identity.</span></h3>
+      </div>
+
+      <p>
+        Setiap ide kami kembangkan menjadi visual yang memiliki
+        karakter, pesan, dan arah yang jelas — sehingga desain tidak
+        hanya terlihat menarik, tetapi juga terasa sesuai dengan brand.
+      </p>
+    </div>
+
+  </div>
+</section>
+</div>
+
+
+
+<!-- ================= ESTIMATE / FAQ / ORDER ================= -->
+<div class="payment-area">
+<div class="page-view" id="page-calculator" data-page="calculator">
+  <div class="page-backbar">
+    <button class="back-btn" type="button" data-back-home>← HOME</button>
+  </div>
+  <section class="pay-section" id="calculator">
+    <div class="pay-section-heading pay-reveal">
+      <h2>Kalkulator Estimasi Biaya</h2>
+      <p>Pilih berbagai kebutuhan desain, dan lihat estimasi secara otomatis.</p>
+    </div>
+
+    <div class="pay-calculator pay-reveal">
+      <div class="pay-calc-left">
+        <h3>1. Pilih Layanan Desain &amp; Kuantitas</h3>
+
+        <div class="pay-service-list" id="serviceList">
+          <div class="pay-service-row" data-name="Desain Wristband" data-price="15000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Wristband</span>
+            <span class="pay-service-price">Rp 15.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          <div class="pay-service-row" data-name="Desain Tote Bag" data-price="15000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Tote Bag</span>
+            <span class="pay-service-price">Rp 15.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          <div class="pay-service-row" data-name="Desain Sticker" data-price="20000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Sticker/cetak</span>
+            <span class="pay-service-price">Rp 20.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          <div class="pay-service-row" data-name="Desain Banner/Spanduk" data-price="35000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Banner/Spanduk</span>
+            <span class="pay-service-price">Rp 35.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          <div class="pay-service-row" data-name="Desain Poster" data-price="25000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Poster</span>
+            <span class="pay-service-price">Rp 25.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+      
+<div class="pay-service-row" data-name="Desain/Cetak Pin" data-price="5000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain/Cetak Pin</span>
+            <span class="pay-service-price">Rp 5.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Baju" data-price="35000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Baju</span>
+            <span class="pay-service-price">Rp 35.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Mug" data-price="25000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Mug</span>
+            <span class="pay-service-price">Rp 25.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Label Kemasan" data-price="25000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Label Kemasan</span>
+            <span class="pay-service-price">Rp 25.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Topi" data-price="15000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Topi</span>
+            <span class="pay-service-price">Rp 15.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Id Card" data-price="20000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Id Card</span>
+            <span class="pay-service-price">Rp 20.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Lanyard" data-price="20000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Lanyard</span>
+            <span class="pay-service-price">Rp 20.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Sticky Notes" data-price="10000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Sticky Notes</span>
+            <span class="pay-service-price">Rp 10.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+<div class="pay-service-row" data-name="Desain Grip Tok" data-price="10000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Grip Tok</span>
+            <span class="pay-service-price">Rp 10.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          <div class="pay-service-row" data-name="Desain Menu" data-price="30000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Menu</span>
+            <span class="pay-service-price">Rp 30.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+          
+          <div class="pay-service-row" data-name="Gantungan Kunci" data-price="10000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Gantungan Kunci/Cetak</span>
+            <span class="pay-service-price">Rp 10.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+
+            <div class="pay-service-row" data-name="Desain Packaging" data-price="40000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Packaging</span>
+            <span class="pay-service-price">Rp 40.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+
+
+          <div class="pay-service-row" data-name="Desain Logo" data-price="30000">
+            <input type="checkbox" class="pay-service-check">
+            <span>Desain Logo</span>
+            <span class="pay-service-price">Rp 30.000</span>
+            <button class="pay-qty-btn pay-minus" type="button">−</button>
+            <span class="pay-qty">1</span>
+            <button class="pay-qty-btn pay-plus" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="pay-additional">
+          <h3>2. Tambahan Layanan</h3>
+
+
+          <label class="pay-additional-row">
+            <input type="checkbox" class="pay-extra-check" data-name="Pengerjaan Cepat" data-price=" 15000">
+            <span>Pengerjaan Cepat Kilat</span>
+            <span class="pay-additional-price">+ Rp 15.000</span>
+          </label>
+         </div>
+       </div>
+
+      <aside class="pay-summary">
+        <h3>Rincian Estimasi</h3>
+        <div class="pay-summary-items" id="summaryItems">
+          <div class="pay-summary-empty">Belum ada layanan yang dipilih</div>
+        </div>
+        <div class="pay-summary-total-label">Total Estimasi:</div>
+        <div class="pay-summary-total" id="totalPrice">Rp 0</div>
+      </aside>
+    </div>
+  </section>
+</div>
+<div class="page-view" id="page-faq" data-page="faq">
+  <div class="page-backbar">
+    <button class="back-btn" type="button" data-back-home>← HOME</button>
+  </div>
+  <section class="pay-section pay-faq-section" id="faq">
+    <div class="pay-section-heading pay-reveal">
+      <h2>Pertanyaan Umum</h2>
+      <p>Hal-hal yang sering ditanyakan sebelum memulai memesan.</p>
+    </div>
+
+    <div class="pay-faq-list pay-reveal">
+      <div class="pay-faq-item">
+        <button class="pay-faq-question" type="button">
+          <span>Bagaimana cara pembayarannya?</span><span class="pay-faq-arrow">▼</span>
+        </button>
+        <div class="pay-faq-answer"><p>Pembayaran dapat dilakukan via Qris atau e-wallet setelah Anda mengirimkan pesanan melalui WhatsApp.</p></div>
+      </div>
+
+      <div class="pay-faq-item">
+        <button class="pay-faq-question" type="button">
+          <span>Bagaimana jika saya ingin memesan banyak desain sekaligus?</span><span class="pay-faq-arrow">▼</span>
+        </button>
+        <div class="pay-faq-answer"><p>Anda akan mendapatkan file hasil akhir dengan format gambar beresolusi tinggi (PNG/JPG siap cetak atau upload.</p></div>
+      </div>
+
+      <div class="pay-faq-item">
+        <button class="pay-faq-question" type="button">
+          <span>Bagaimana cara melakukan pemesanan?</span><span class="pay-faq-arrow">▼</span>
+        </button>
+        <div class="pay-faq-answer"><p>Pilih paket yang desain yang tertera, lalu lengkapi data pemesanan dan kirim melalui WhatsApp.</p></div>
+      </div>
+
+      <div class="pay-faq-item">
+        <button class="pay-faq-question" type="button">
+          <span>Apakah bisa request destinasi?</span><span class="pay-faq-arrow">▼</span>
+        </button>
+        <div class="pay-faq-answer"><p>Ya. Kamu dapat mengajukan destinasi tertentu melalui kolom catatan pada formulir pemesanan.</p></div>
+      </div>
+
+      <div class="pay-faq-item">
+        <button class="pay-faq-question" type="button">
+          <span>Bagaimana jika ingin memesan untuk banyak orang?</span><span class="pay-faq-arrow">▼</span>
+        </button>
+        <div class="pay-faq-answer"><p>Atur jumlah peserta pada kalkulator estimasi biaya. Total biaya akan otomatis diperbarui.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page-view" id="page-booking" data-page="booking">
+  <div class="page-backbar">
+    <button class="back-btn" type="button" data-back-home>← HOME</button>
+  </div>
+  <section class="pay-booking pay-white" id="booking">
+    <div class="pay-section-heading pay-reveal">
+      <h2>Kirim Pesanan Langsung</h2>
+      <p>Lengkapi data berikut, rincian pemesanan akan otomatis terkirim ke WhatsApp kami.</p>
+    </div>
+
+    <form class="pay-booking-card pay-reveal" id="bookingForm">
+      <div class="pay-error" id="formError"></div>
+
+      <div class="pay-form-group">
+        <label for="name">Nama Lengkap</label>
+        <input class="pay-form-control" id="name" type="text" placeholder="Contoh: Budi" required>
+      </div>
+
+      <div class="pay-form-group">
+        <label for="phone">Nomor HP / WhatsApp Anda</label>
+        <input class="pay-form-control" id="phone" type="tel" placeholder="Contoh: 081234567890" required>
+      </div>
+
+      <div class="pay-form-group">
+        <label for="email">Alamat Email</label>
+        <input class="pay-form-control" id="email" type="email" placeholder="Contoh: budi@gmail.com" required>
+      </div>
+
+      <div class="pay-selected-note" id="selectedNote">
+        Pilih minimal satu paket desain pada kalkulator agar rincian pemesanan dapat dikirim.
+      </div>
+
+      <div class="pay-form-group">
+        <label for="notes">Pesan Tambahan atau Catatan</label>
+        <textarea class="pay-form-control" id="notes" placeholder="Tuliskan destinasi, jumlah peserta, kebutuhan khusus, atau catatan yang Anda inginkan..."></textarea>
+      </div>
+
+      <button class="pay-btn pay-btn-yellow pay-form-submit" type="submit">Kirim Pesanan via WhatsApp</button>
+    </form>
+  </section>
+</div>
+</div>
+
+<footer>
+  <div class="footer-name">NORTH ADVENTURE</div>
+  <div class="footer-socials" aria-label="Social media North Adventure">
+    <a href="https://www.instagram.com/wenorth.id/" target="_blank" rel="noopener noreferrer" aria-label="Instagram wenorth.id">Instagram · @wenorth.id</a>
+    <a href="https://www.tiktok.com/@wenorth.id" target="_blank" rel="noopener noreferrer" aria-label="TikTok wenorth.id">TikTok · @wenorth.id</a>
+    <a href="https://shopee.co.id/wenorthadventure" target="_blank" rel="noopener noreferrer" aria-label="Shopee wenorthadventure">Shopee · wenorthadventure</a>
+  </div>
+  <div class="footer-sub">Creative Graphic Design Agency</div>
+  <div class="copyright">© 2026 North Adventure. All rights reserved.</div>
+</footer>
+
+<script>
+/*
+    ================================================
+    WE NORTH — CONFIGURATION
+    ================================================
+    GANTI NOMOR DI BAWAH DENGAN NOMOR WHATSAPP WE NORTH.
+    Format: kode negara + nomor, tanpa +, spasi, atau tanda -
+    Contoh Indonesia: 6281234567890
+  */
+  const WHATSAPP_NUMBER = "085880032529";
+
+  const rupiah = value =>
+    "Rp " + new Intl.NumberFormat("id-ID").format(value);
+
+  function getSelectedServices() {
+    const selected = [];
+
+    document.querySelectorAll(".pay-service-row").forEach(row => {
+      const check = row.querySelector(".pay-service-check");
+      if (check.checked) {
+        const name = row.dataset.name;
+        const price = Number(row.dataset.price);
+        const qty = Number(row.querySelector(".pay-qty").textContent);
+        selected.push({name, price, qty, subtotal: price * qty});
+      }
+    });
+
+    document.querySelectorAll(".pay-extra-check").forEach(check => {
+      if (check.checked) {
+        selected.push({
+          name: check.dataset.name,
+          price: Number(check.dataset.price),
+          qty: 1,
+          subtotal: Number(check.dataset.price)
+        });
+      }
+    });
+
+    return selected;
+  }
+
+  function updateCalculator() {
+    const selected = getSelectedServices();
+    const container = document.getElementById("summaryItems");
+    const totalEl = document.getElementById("totalPrice");
+    const noteEl = document.getElementById("selectedNote");
+
+    container.innerHTML = "";
+
+    if (!selected.length) {
+      container.innerHTML = '<div class="summary-empty">Belum ada layanan yang dipilih</div>';
+      totalEl.textContent = "Rp 0";
+      noteEl.textContent = "Pilih minimal satu paket desain pada kalkulator agar rincian pemesanan dapat dikirim.";
+      return;
+    }
+
+    let total = 0;
+
+    selected.forEach(item => {
+      total += item.subtotal;
+
+      const div = document.createElement("div");
+      div.className = "pay-summary-item";
+      div.innerHTML = `
+        <span>${item.name} × ${item.qty}</span>
+        <strong>${rupiah(item.subtotal)}</strong>
+      `;
+      container.appendChild(div);
+    });
+
+    totalEl.textContent = rupiah(total);
+
+    const packageCount = selected.reduce((sum, item) => sum + item.qty, 0);
+    noteEl.textContent = `${selected.length} pilihan layanan · ${packageCount} item · Total ${rupiah(total)}`;
+  }
+
+  document.querySelectorAll(".pay-service-row").forEach(row => {
+    const check = row.querySelector(".pay-service-check");
+    const qtyEl = row.querySelector(".pay-qty");
+    const minus = row.querySelector(".pay-minus");
+    const plus = row.querySelector(".pay-plus");
+
+    check.addEventListener("change", updateCalculator);
+
+    plus.addEventListener("click", () => {
+      qtyEl.textContent = Number(qtyEl.textContent) + 1;
+      updateCalculator();
+    });
+
+    minus.addEventListener("click", () => {
+      qtyEl.textContent = Math.max(1, Number(qtyEl.textContent) - 1);
+      updateCalculator();
+    });
+  });
+
+  document.querySelectorAll(".pay-extra-check").forEach(check => {
+    check.addEventListener("change", updateCalculator);
+  });
+
+  /* FAQ accordion */
+  document.querySelectorAll(".pay-faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const item = button.parentElement;
+
+      document.querySelectorAll(".pay-faq-item").forEach(other => {
+        if (other !== item) other.classList.remove("active");
+      });
+
+      item.classList.toggle("active");
+    });
+  });
+  /* WhatsApp order */
+  document.getElementById("bookingForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const error = document.getElementById("formError");
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+    const selected = getSelectedServices();
+
+    error.style.display = "none";
+    error.textContent = "";
+
+    if (!name || !phone || !email) {
+      error.textContent = "Mohon lengkapi nama, nomor WhatsApp, dan email.";
+      error.style.display = "block";
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      error.textContent = "Format email belum benar.";
+      error.style.display = "block";
+      return;
+    }
+
+    if (!selected.length) {
+      error.textContent = "Pilih minimal satu paket desain terlebih dahulu.";
+      error.style.display = "block";
+      document.getElementById("calculator").scrollIntoView({behavior:"smooth"});
+      return;
+    }
+
+    if (WHATSAPP_NUMBER.includes("X")) {
+      error.textContent = "Nomor WhatsApp tujuan belum diatur. Ganti WHATSAPP_NUMBER di bagian JavaScript.";
+      error.style.display = "block";
+      return;
+    }
+
+    const total = selected.reduce((sum, item) => sum + item.subtotal, 0);
+
+    const serviceText = selected
+      .map(item => `- ${item.name} × ${item.qty}: ${rupiah(item.subtotal)}`)
+      .join("\n");
+
+    const message = `Halo WE NORTH,
+
+Saya ingin melakukan pemesanan North Adventure.
+
+Nama:
+${name}
+
+No. WhatsApp:
+${phone}
+
+Email:
+${email}
+
+Pilihan Adventure:
+${serviceText}
+
+Total Estimasi:
+${rupiah(total)}
+
+Catatan:
+${notes || "-"}
+
+Terima kasih.`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+
+  /* Scroll reveal */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll(".pay-reveal").forEach(el => observer.observe(el));
+
+  /* Initial calculation */
+  updateCalculator();
+</script>
+
+
+<script>
+(function(){
+  const mainView=document.getElementById("mainView");
+  const pages=document.querySelectorAll(".page-view");
+  function home(){
+    pages.forEach(p=>p.classList.remove("active"));
+    mainView.classList.remove("hidden");
+    window.scrollTo({top:0,behavior:"smooth"});
+    history.replaceState(null,"",window.location.pathname+window.location.search);
+  }
+  function openPage(name){
+    mainView.classList.add("hidden");
+    pages.forEach(p=>p.classList.remove("active"));
+    const page=document.getElementById("page-"+name);
+    if(page){page.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});history.replaceState(null,"","#"+name);}
+  }
+  document.querySelectorAll("[data-page-link]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openPage(a.dataset.pageLink)}));
+  document.querySelectorAll("[data-main-home]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();home()}));
+  document.querySelectorAll("[data-main-profile]").forEach(a=>a.addEventListener("click",e=>{
+    e.preventDefault(); home();
+    setTimeout(()=>document.getElementById("profile")?.scrollIntoView({behavior:"smooth",block:"start"}),80);
+  }));
+  document.querySelectorAll("[data-back-home]").forEach(b=>b.addEventListener("click",home));
+  const hash=location.hash.slice(1);
+  if(["calculator","faq","booking"].includes(hash)) openPage(hash);
+})();
+</script>
+
+<script>
+const menu = document.getElementById("menu");
+const navlinks = document.getElementById("navlinks");
+
+menu.addEventListener("click", () => {
+  navlinks.classList.toggle("active");
+});
+
+document.querySelectorAll(".navlinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    navlinks.classList.remove("active");
+  });
+});
+</script>
+
+</body>
+</html>
